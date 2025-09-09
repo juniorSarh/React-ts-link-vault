@@ -16,7 +16,7 @@ html, body, #root{
   height: 5%;
   width: 100%;
   display: flex;
-  padding: 2%;
+  padding: 10px;
   flex-direction: row;
   justify-content: space-around;
   align-items: flex-start;
