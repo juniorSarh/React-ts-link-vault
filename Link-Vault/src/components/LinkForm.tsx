@@ -9,13 +9,11 @@ export type LinkItem = {
   tags: string[];
 };
 
-const LS_KEY = "links";
+type Props = {
+  onAdd: (item: LinkItem) => void;
+};
 
-export default function LinkForm({
-  onAdd,
-}: {
-  onAdd?: (item: LinkItem) => void;
-}) {
+export default function LinkForm({ onAdd }: Props) {
   const [title, setTitle] = useState("");
   const [link, setLink] = useState("");
   const [description, setDescription] = useState("");
@@ -36,21 +34,13 @@ export default function LinkForm({
         .map((t) => t.trim())
         .filter(Boolean),
     };
+    onAdd(item);
 
-    try {
-      const raw = localStorage.getItem(LS_KEY);
-      const arr: LinkItem[] = raw ? JSON.parse(raw) : [];
-      arr.push(item);
-      localStorage.setItem(LS_KEY, JSON.stringify(arr));
-      onAdd?.(item);
-      setTitle("");
-      setLink("");
-      setDescription("");
-      setTagsText("");
-    } catch (err) {
-      console.error("localStorage write failed", err);
-      alert("Could not save to localStorage.");
-    }
+    // reset
+    setTitle("");
+    setLink("");
+    setDescription("");
+    setTagsText("");
   };
 
   const handleCancel = () => {
@@ -91,7 +81,7 @@ export default function LinkForm({
         <input
           value={tagsText}
           onChange={(e) => setTagsText(e.target.value)}
-          placeholder="Code, Music, eat, etc."
+          placeholder="code, eat, play, sleep, repeat"
         />
       </div>
 

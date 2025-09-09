@@ -28,7 +28,7 @@ html, body, #root{
 /* main content*/
 .MainComponent{
   height:90%;
-  width: 75%;
+  width: 100%;
   background-color:white;
   justify-content: center;
   align-items: center;

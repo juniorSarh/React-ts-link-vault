@@ -6,38 +6,32 @@ import type { LinkItem } from "./LinkForm";
 const LS_KEY = "links";
 
 export default function MainComponent() {
+  const [links, setLinks] = useState<LinkItem[]>([]);
 
-  const [refresh, setRefresh] = useState(0);
-
-  
+  // Load once from localStorage
   useEffect(() => {
     try {
       const raw = localStorage.getItem(LS_KEY);
-      if (!raw) localStorage.setItem(LS_KEY, JSON.stringify([]));
-    } catch (err) {
-  
-      console.warn("localStorage not available:", err);
+      const parsed = raw ? JSON.parse(raw) : [];
+      setLinks(Array.isArray(parsed) ? parsed : []);
+    } catch {
+      setLinks([]);
     }
   }, []);
 
-  
-  const handleAdd = (_item: LinkItem) => {
-    setRefresh((r) => r + 1);
+  // Add + persist
+  const handleAdd = (item: LinkItem) => {
+    setLinks((prev) => {
+      const next = [...prev, item];
+      localStorage.setItem(LS_KEY, JSON.stringify(next));
+      return next;
+    });
   };
-
-  
-  useEffect(() => {
-    const onStorage = (e: StorageEvent) => {
-      if (e.key === LS_KEY) setRefresh((r) => r + 1);
-    };
-    window.addEventListener("storage", onStorage);
-    return () => window.removeEventListener("storage", onStorage);
-  }, []);
 
   return (
     <main style={{ maxWidth: 720, margin: "0 auto", padding: 16 }}>
       <LinkForm onAdd={handleAdd} />
-      <LinkList key={refresh} />
+      <LinkList items={links} />
     </main>
   );
 }
