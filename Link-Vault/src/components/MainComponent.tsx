@@ -29,7 +29,7 @@ export default function MainComponent() {
   };
 
   return (
-    <main style={{ maxWidth: 720, margin: "0 auto", padding: 16 }}>
+    <main className="maincomponent">
       <LinkForm onAdd={handleAdd} />
       <LinkList items={links} />
     </main>

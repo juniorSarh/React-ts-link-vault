@@ -1,12 +1,12 @@
 import React from 'react'
 
 
-interface iconsProps{
+interface IconsProps{
     name:string,
     alt:string,
     src:string;
 }
-export default function icons({name,alt,src}:iconsProps) {
+export default function Icons({name,alt,src}:IconsProps) {
   return (
     <div>
        <img

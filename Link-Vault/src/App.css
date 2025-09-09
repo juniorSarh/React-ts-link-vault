@@ -18,15 +18,19 @@ html, body, #root{
   display: flex;
   padding: 10px;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: center;
   align-items: flex-start;
+  padding: 40px;
+  gap: 50px;
   background-color: #91818A;
+  border-bottom-right-radius: 30px;
+  border-bottom-left-radius: 30px;
   
 
 }
 
 /* main content*/
-.MainComponent{
+.maincomponent{
   height:100%;
   width: 100%;
   background-color:white;
@@ -39,8 +43,10 @@ html, body, #root{
   background: #e6e6e6;
   border-radius: 10px;
   padding: 16px;
-  max-width: 100%;
+  max-width:98%;
   margin: 0 auto 20px;
+   box-shadow: '0 4px 8px rgba(0, 0, 0, 0.1)';
+   background-Color: '#9b9999ff'
 }
 
 .linkform h3 {
@@ -85,11 +91,14 @@ html, body, #root{
   background-color: darkred;
 }
 
-/* LinkList.css */
+/* LinkList table */
 
 .linklist {
   margin: 20px;
   font-family: Arial, sans-serif;
+  border-radius: 10px;
+  padding: 16px;
+  max-width:98%;
 }
 
 .linklist h3 {
@@ -132,4 +141,6 @@ html, body, #root{
   width: 100%;
   background-color: #91818A;
   padding: 30px;
+  border-top-right-radius: 30px;
+  border-top-left-radius: 30px;
 }

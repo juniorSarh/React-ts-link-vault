@@ -5,12 +5,10 @@ interface ButtonProps {
   style?: React.CSSProperties;
 }
 
-const Button: React.FC<ButtonProps> = ({ name, style }) => {
+export default function Button({name, style}: ButtonProps) {
   return (
-    <button style={style}>
-      {name}
-    </button>
+    <div>
+      <button style={style}>{name}</button>
+    </div>
   );
-};
-
-export default Button;
+}
