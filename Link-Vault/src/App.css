@@ -13,7 +13,7 @@ html, body, #root{
 
 /* Navbar */
 .NavBar{
-  height: 5%;
+  height: 10%;
   width: 100%;
   display: flex;
   padding: 10px;
@@ -27,10 +27,10 @@ html, body, #root{
 
 /* main content*/
 .MainComponent{
-  height:90%;
+  height:100%;
   width: 100%;
   background-color:white;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
 }
 /* Form Style */
@@ -85,13 +85,50 @@ html, body, #root{
   background-color: darkred;
 }
 
+/* LinkList.css */
+
+.linklist {
+  margin: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.linklist h3 {
+  margin-bottom: 10px;
+}
+
+.linklist table {
+  width: 100%;
+  border-collapse: collapse;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.linklist th,
+.linklist td {
+  padding: 12px;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+.linklist th {
+  background-color: #f4f4f4;
+}
+
+.linklist a {
+  color: #1a0dab;
+  text-decoration: none;
+}
+
+.linklist a:hover {
+  text-decoration: underline;
+}
+
 
 /* Footer */
 .Footer{
   display: flex;
   flex-direction: row;
   justify-content: center;
-  height: 5%;
+  height: 10%;
   width: 100%;
   background-color: #91818A;
   padding: 30px;

@@ -5,12 +5,13 @@ import MainComponent from './components/MainComponent'
 
 export default function App() {
   return (
-   <div style={{ height: '100%', 
+   <div style={{ 
+    height: '100%', 
     width:'100%',
     borderRadius:'10px', 
    display:'flex', 
    flexDirection:'column', 
-   justifyContent:'space-between', 
+   justifyContent:'flex-start', 
    alignItems:'center', 
    }}>
       <NavBar/>

@@ -77,7 +77,7 @@ export default function LinkForm({ onAdd }: Props) {
       </div>
 
       <div>
-        <label>Tags (comma separated)</label>
+        <label>Tags</label>
         <input
           value={tagsText}
           onChange={(e) => setTagsText(e.target.value)}
