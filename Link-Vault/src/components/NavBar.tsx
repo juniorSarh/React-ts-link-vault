@@ -11,15 +11,18 @@ export default function NavBar() {
       <img
         src={home}
         alt="Home logo"
-        style={{ width: "40px", height: "40px",  }}
+        style={{ width: "40px", height: "40px" }}
       />
       <h1>Link Vault</h1>
-      <img
-        src={search}
-        alt="Home logo"
-        style={{ width: "40px", height: "40px",  }}
-      />
-      <SearchBar />
+      <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+        <img
+          src={search}
+          alt="Home logo"
+          style={{ width: "40px", height: "40px", marginBottom: "20px" }}
+        />
+        <SearchBar />
+      </div>
+
       <Button
         name="Search"
         style={{
@@ -32,7 +35,7 @@ export default function NavBar() {
       <img
         src={profile}
         alt="Home logo"
-        style={{ width: "50px", height: "50px",  }}
+        style={{ width: "50px", height: "50px" }}
       />
     </div>
   );

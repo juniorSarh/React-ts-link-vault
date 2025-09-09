@@ -8,7 +8,7 @@ export default function App() {
    <div className='App'
    style={{ 
     height: '100%', 
-    width:'75%',
+    width:'80%',
     borderRadius:'10px', 
    display:'flex', 
    flexDirection:'column', 
