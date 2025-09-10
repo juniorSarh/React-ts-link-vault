@@ -131,6 +131,8 @@ html, body, #root{
   width: 100%;
   border-collapse: separate;
   border-spacing: 8px;
+   border: 4px solid #3f3e3e;
+    border-radius: 12px;
 }
 
 .linktable th {
@@ -138,11 +140,14 @@ html, body, #root{
   font-weight: 700;
   color: #333;
   padding: 4px 6px;
+   border: 1px solid #0c0b0b;
+   border-radius: 10px;
 }
 
 .linktable td {
   vertical-align: middle;
   padding: 0 6px;
+   
 }
 
 .linktable input {

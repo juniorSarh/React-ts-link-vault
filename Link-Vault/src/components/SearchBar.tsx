@@ -18,7 +18,6 @@ export default function SearchBar() {
           height: '50px',             
           border: '2px solid #aaa',   
           borderRadius: '12px',       
-          boxShadow: '0 2px 6px rgba(0,0,0,0.1)'
         }}
       />
     </div>

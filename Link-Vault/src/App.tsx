@@ -2,6 +2,7 @@ import React from 'react'
 import Footer from './components/Footer'
 import NavBar from './components/NavBar'
 import MainComponent from './components/MainComponent'
+import LocalStorageFunction from './components/utils/LocalStorageFunction'
 
 export default function App() {
   return (
@@ -21,6 +22,7 @@ export default function App() {
       <NavBar/>
       <MainComponent/>
       <Footer/>
+      <LocalStorageFunction/>
     </div>
   )
 }
