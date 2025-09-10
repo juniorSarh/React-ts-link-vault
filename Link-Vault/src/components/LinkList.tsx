@@ -1,78 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
 import FormButton from "./FormButton";
 import type { LinkItem } from "./LinkForm";
 
 type Props = {
   items: LinkItem[];
-  onUpdate: (index: number, item: LinkItem) => void;
+  onEdit: (index: number) => void;
   onDelete: (index: number) => void;
 };
 
-type RowProps = {
-  index: number;
-  item: LinkItem;
-  onUpdate: (index: number, item: LinkItem) => void;
-  onDelete: (index: number) => void;
-};
-
-function LinkRow({ index, item, onUpdate, onDelete }: RowProps) {
-  const [title, setTitle] = useState(item.title);
-  const [link, setLink] = useState(item.link);
-  const [description, setDescription] = useState(item.description);
-  const [tagsText, setTagsText] = useState(item.tags?.join(", ") || "");
-
-  const handleUpdate = () => {
-    onUpdate(index, {
-      title: title.trim(),
-      link: link.trim(),
-      description: description.trim(),
-      tags: tagsText
-        .split(",")
-        .map((t) => t.trim())
-        .filter(Boolean),
-    });
-  };
-
-  return (
-    <tr>
-      <td>
-        <input value={title} onChange={(e) => setTitle(e.target.value)} />
-      </td>
-      <td>
-        <input value={link} onChange={(e) => setLink(e.target.value)} />
-      </td>
-      <td>
-        <input
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-        />
-      </td>
-      <td>
-        <input
-          value={tagsText}
-          onChange={(e) => setTagsText(e.target.value)}
-          placeholder="tag1, tag2"
-        />
-      </td>
-      <td>
-        <div className="linktable-actions">
-          <FormButton type="button" variant="save" onClick={handleUpdate}>
-            Update
-          </FormButton>
-          <FormButton
-            type="button"
-            variant="cancel"
-            onClick={() => onDelete(index)}
-          >
-            Delete
-          </FormButton>
-        </div>
-      </td>
-    </tr>
-  );
-}
-
-export default function LinkList({ items, onUpdate, onDelete }: Props) {
+export default function LinkList({ items, onEdit, onDelete }: Props) {
   return (
     <section className="linklist">
       <h3>Link List</h3>
@@ -96,13 +32,38 @@ export default function LinkList({ items, onUpdate, onDelete }: Props) {
               </tr>
             ) : (
               items.map((item, i) => (
-                <LinkRow
-                  key={`${item.link}-${i}`}
-                  index={i}
-                  item={item}
-                  onUpdate={onUpdate}
-                  onDelete={onDelete}
-                />
+                <tr key={`${item.link}-${i}`}>
+                  <td>{item.title}</td>
+                  <td>
+                    <a
+                      href={item.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {item.link}
+                    </a>
+                  </td>
+                  <td>{item.description}</td>
+                  <td>{item.tags?.join(", ")}</td>
+                  <td>
+                    <div className="linktable-actions">
+                      <FormButton
+                        type="button"
+                        variant="save"
+                        onClick={() => onEdit(i)}
+                      >
+                        Update
+                      </FormButton>
+                      <FormButton
+                        type="button"
+                        variant="cancel"
+                        onClick={() => onDelete(i)}
+                      >
+                        Delete
+                      </FormButton>
+                    </div>
+                  </td>
+                </tr>
               ))
             )}
           </tbody>

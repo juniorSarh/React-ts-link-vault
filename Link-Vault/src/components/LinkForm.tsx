@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import type { FormEvent } from "react";
 import FormButton from "./FormButton";
 
@@ -11,13 +11,39 @@ export type LinkItem = {
 
 type Props = {
   onAdd: (item: LinkItem) => void;
+  onUpdate: (index: number, item: LinkItem) => void;
+  // edit mode inputs
+  editingIndex: number | null;
+  editingItem: LinkItem | null;
+  onCancelEdit: () => void;
 };
 
-export default function LinkForm({ onAdd }: Props) {
+export default function LinkForm({
+  onAdd,
+  onUpdate,
+  editingIndex,
+  editingItem,
+  onCancelEdit,
+}: Props) {
   const [title, setTitle] = useState("");
   const [link, setLink] = useState("");
   const [description, setDescription] = useState("");
   const [tagsText, setTagsText] = useState("");
+
+  // When editing, prefill the form
+  useEffect(() => {
+    if (editingItem) {
+      setTitle(editingItem.title ?? "");
+      setLink(editingItem.link ?? "");
+      setDescription(editingItem.description ?? "");
+      setTagsText((editingItem.tags ?? []).join(", "));
+    } else {
+      setTitle("");
+      setLink("");
+      setDescription("");
+      setTagsText("");
+    }
+  }, [editingItem]);
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -34,9 +60,15 @@ export default function LinkForm({ onAdd }: Props) {
         .map((t) => t.trim())
         .filter(Boolean),
     };
-    onAdd(item);
 
-    // reset
+    if (editingIndex !== null) {
+      onUpdate(editingIndex, item);
+      onCancelEdit(); // exit edit mode
+    } else {
+      onAdd(item);
+    }
+
+    // reset for next entry
     setTitle("");
     setLink("");
     setDescription("");
@@ -44,68 +76,57 @@ export default function LinkForm({ onAdd }: Props) {
   };
 
   const handleCancel = () => {
+    // Clear fields; if in edit mode, also exit edit state
     setTitle("");
     setLink("");
     setDescription("");
     setTagsText("");
+    if (editingIndex !== null) onCancelEdit();
   };
+
+  const isEditing = editingIndex !== null;
 
   return (
     <form className="linkform" onSubmit={handleSubmit} noValidate>
-      <h3>Add a New Link</h3>
+      <h3>{isEditing ? "Update Link" : "Add A New Link"}</h3>
 
       <div>
-        <label>
-          Title<span className="required-asterisk">*</span>
-        </label>
-        <input
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-          required
-        />
+        <label>Title</label>
+        <input value={title} onChange={(e) => setTitle(e.target.value)} />
       </div>
 
       <div>
-        <label>
-          Link<span className="required-asterisk">*</span>
-        </label>
+        <label>Link</label>
         <input
           value={link}
           onChange={(e) => setLink(e.target.value)}
           placeholder="https://example.com"
-          required
         />
       </div>
 
       <div>
-        <label>
-          Description<span className="required-asterisk">*</span>
-        </label>
+        <label>Description</label>
         <textarea
           value={description}
           onChange={(e) => setDescription(e.target.value)}
-          required
         />
       </div>
 
       <div>
-        <label>
-          Tags<span className="required-asterisk">*</span>
-        </label>
+        <label>Tags (comma separated)</label>
         <input
           value={tagsText}
           onChange={(e) => setTagsText(e.target.value)}
-          placeholder="code, eat, play, sleep, repeat"
-          required
+          placeholder="code, eat, fun, etc"
         />
       </div>
 
       <div className="actions">
         <FormButton type="submit" variant="save">
-          Save
+          {isEditing ? "Update" : "Save"}
         </FormButton>
         <FormButton type="button" variant="cancel" onClick={handleCancel}>
-          Cancel
+          {isEditing ? "Cancel edit" : "Cancel"}
         </FormButton>
       </div>
     </form>
