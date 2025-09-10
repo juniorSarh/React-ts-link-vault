@@ -13,7 +13,7 @@ export default function LinkList({ items }: Props) {
       ) : (
         <table>
           <thead>
-            <div style={{display:'flex',justifyContent:'center', alignContent:'center', alignItems:'center'}}><h3>Link List</h3></div>
+           
             <tr>
               <th>Title</th>
               <th>Link</th>
@@ -27,9 +27,9 @@ export default function LinkList({ items }: Props) {
                 <td>
                   <strong>{item.title}</strong>
                 </td>
-                <td>
+                <td style={{ width:'200px' }}>
                   <a href={item.link} target="_blank" rel="noopener noreferrer">
-                    {item.link}
+                    Link
                   </a>
                 </td>
                 <td>{item.description || "-"}</td>

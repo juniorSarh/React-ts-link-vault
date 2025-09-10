@@ -22,7 +22,7 @@ html, body, #root{
   align-items: flex-start;
   padding: 40px;
   gap: 50px;
-
+  color: white;
   background-color: #91818A;
   border-bottom-right-radius: 30px;
   border-bottom-left-radius: 30px;
@@ -34,9 +34,11 @@ html, body, #root{
 .maincomponent{
   height:100%;
   width: 100%;
-  background-color:rgb(111, 5, 5);
+  background-color:smokewhite;
+  padding: 20px;
   justify-content: flex-start;
   align-items: center;
+  flex-wrap: wrap;
 }
 /* Form Style */
 
@@ -103,7 +105,7 @@ html, body, #root{
   font-family: Arial, sans-serif;
   border-radius: 10px;
   padding: 16px;
-  width:100%;
+  width:98%;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
@@ -149,6 +151,7 @@ html, body, #root{
   width: 100%;
   background-color: #91818A;
   padding: 30px;
+  color: white;
   border-top-right-radius: 30px;
   border-top-left-radius: 30px;
 }
