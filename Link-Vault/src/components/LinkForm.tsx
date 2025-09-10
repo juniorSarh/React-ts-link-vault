@@ -55,33 +55,48 @@ export default function LinkForm({ onAdd }: Props) {
       <h3>Add a New Link</h3>
 
       <div>
-        <label>Title</label>
-        <input value={title} onChange={(e) => setTitle(e.target.value)} />
+        <label>
+          Title<span className="required-asterisk">*</span>
+        </label>
+        <input
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+          required
+        />
       </div>
 
       <div>
-        <label>Link</label>
+        <label>
+          Link<span className="required-asterisk">*</span>
+        </label>
         <input
           value={link}
           onChange={(e) => setLink(e.target.value)}
           placeholder="https://example.com"
+          required
         />
       </div>
 
       <div>
-        <label>Description</label>
+        <label>
+          Description<span className="required-asterisk">*</span>
+        </label>
         <textarea
           value={description}
           onChange={(e) => setDescription(e.target.value)}
+          required
         />
       </div>
 
       <div>
-        <label>Tags</label>
+        <label>
+          Tags<span className="required-asterisk">*</span>
+        </label>
         <input
           value={tagsText}
           onChange={(e) => setTagsText(e.target.value)}
           placeholder="code, eat, play, sleep, repeat"
+          required
         />
       </div>
 
