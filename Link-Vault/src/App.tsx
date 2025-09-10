@@ -9,7 +9,7 @@ export default function App() {
    style={{ 
     height: '100%', 
     width:'80%',
-    borderRadius:'10px', 
+    borderRadius:'30px', 
    display:'flex', 
    flexDirection:'column', 
    justifyContent:'flex-start', 

@@ -13,7 +13,7 @@ export default function NavBar() {
         alt="Home logo"
         style={{ width: "40px", height: "40px" }}
       />
-      <h1>Link Vault</h1>
+      <h2 style={{marginTop:'15px'}}>Link Vault</h2>
       <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
         <img
           src={search}

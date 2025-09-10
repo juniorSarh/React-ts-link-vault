@@ -24,8 +24,7 @@ html, body, #root{
   gap: 50px;
   color: white;
   background-color: #91818A;
-  border-bottom-right-radius: 30px;
-  border-bottom-left-radius: 30px;
+  border-radius: 30px;
   
 
 }
@@ -152,6 +151,5 @@ html, body, #root{
   background-color: #91818A;
   padding: 30px;
   color: white;
-  border-top-right-radius: 30px;
-  border-top-left-radius: 30px;
+  border-radius: 30px;
 }
