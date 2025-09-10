@@ -8,7 +8,6 @@ const LS_KEY = "links";
 export default function MainComponent() {
   const [links, setLinks] = useState<LinkItem[]>([]);
 
-  // Load once from localStorage
   useEffect(() => {
     try {
       const raw = localStorage.getItem(LS_KEY);
@@ -19,7 +18,6 @@ export default function MainComponent() {
     }
   }, []);
 
-  // Add + persist
   const handleAdd = (item: LinkItem) => {
     setLinks((prev) => {
       const next = [...prev, item];
@@ -28,10 +26,27 @@ export default function MainComponent() {
     });
   };
 
+  const handleUpdate = (index: number, item: LinkItem) => {
+    setLinks((prev) => {
+      const next = [...prev];
+      next[index] = item;
+      localStorage.setItem(LS_KEY, JSON.stringify(next));
+      return next;
+    });
+  };
+
+  const handleDelete = (index: number) => {
+    setLinks((prev) => {
+      const next = prev.filter((_, i) => i !== index);
+      localStorage.setItem(LS_KEY, JSON.stringify(next));
+      return next;
+    });
+  };
+
   return (
     <main className="maincomponent">
       <LinkForm onAdd={handleAdd} />
-      <LinkList items={links} />
+      <LinkList items={links} onUpdate={handleUpdate} onDelete={handleDelete} />
     </main>
   );
 }
