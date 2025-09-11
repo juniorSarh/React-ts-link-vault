@@ -1,42 +1,38 @@
-import React from 'react'
-import SearchBar from './SearchBar'
-import Button from './Button'
-import home from '../Icons/home.png'
-import search from '../Icons/search.png'
-import profile from '../Icons/profile.png'
+import React from "react";
+import SearchBar from "./SearchBar";
+type NavBarProps = {
+  searchValue: string;
+  onSearchChange: (value: string) => void;
+  onSearch: () => void;
+};
 
-export default function NavBar() {
+export default function NavBar({
+  searchValue,
+  onSearchChange,
+  onSearch,
+}: NavBarProps) {
   return (
-    <div className="NavBar">
-      <img
-        src={home}
-        alt="Home logo"
-        style={{ width: "40px", height: "40px" }}
-      />
-      <h2 style={{marginTop:'15px'}}>Link Vault</h2>
-      <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-        <img
-          src={search}
-          alt="Home logo"
-          style={{ width: "40px", height: "40px", marginBottom: "20px" }}
-        />
-        <SearchBar />
-      </div>
-
-      <Button
-        name="Search"
+    <div
+      className="NavBar"
+      style={{ display: "flex", alignItems: "center", gap: 12 }}
+    >
+      {/* your branding/icons */}
+      <div
         style={{
-          backgroundColor: "green",
-          color: "white",
-          padding: "10px 20px",
-          borderRadius: "20%",
+          display: "flex",
+          alignItems: "center",
+          gap: 10,
+          flex: 1,
+          maxWidth: 640,
         }}
-      />
-      <img
-        src={profile}
-        alt="Home logo"
-        style={{ width: "50px", height: "50px" }}
-      />
+      >
+        <SearchBar
+          value={searchValue}
+          onChange={onSearchChange}
+          onSearch={onSearch}
+        />
+      </div>
+      {/* profile icon, etc. */}
     </div>
   );
 }

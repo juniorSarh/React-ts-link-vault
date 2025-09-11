@@ -1,28 +1,24 @@
-import React from 'react'
-import Footer from './components/Footer'
-import NavBar from './components/NavBar'
-import MainComponent from './components/MainComponent'
-import LocalStorageFunction from './components/utils/LocalStorageFunction'
+import React, { useState } from "react";
+import "./App.css";
+import NavBar from "./components/NavBar";
+import MainComponent from "./components/MainComponent";
+import Footer from "./components/Footer";
 
-export default function App() {
+function App() {
+  const [query, setQuery] = useState("");
+  const [searchInput, setSearchInput] = useState("");
+
   return (
-   <div className='App'
-   style={{ 
-    height: '100%', 
-    width:'80%',
-    borderRadius:'30px', 
-   display:'flex', 
-   flexDirection:'column', 
-   justifyContent:'flex-start', 
-   alignItems:'center', 
-   margin:'20px auto', 
-   padding:'20px', 
-  
-   }}>
-      <NavBar/>
-      <MainComponent/>
-      <Footer/>
-      <LocalStorageFunction/>
+    <div className="App">
+      <NavBar
+        searchValue={searchInput}
+        onSearchChange={setSearchInput}
+        onSearch={() => setQuery(searchInput)}
+      />
+      <MainComponent query={query} />
+      <Footer />
     </div>
-  )
+  );
 }
+
+export default App;

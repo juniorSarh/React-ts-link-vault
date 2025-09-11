@@ -12,7 +12,7 @@ export type LinkItem = {
 type Props = {
   onAdd: (item: LinkItem) => void;
   onUpdate: (index: number, item: LinkItem) => void;
-  // edit mode inputs
+
   editingIndex: number | null;
   editingItem: LinkItem | null;
   onCancelEdit: () => void;
@@ -30,7 +30,7 @@ export default function LinkForm({
   const [description, setDescription] = useState("");
   const [tagsText, setTagsText] = useState("");
 
-  // When editing, prefill the form
+  
   useEffect(() => {
     if (editingItem) {
       setTitle(editingItem.title ?? "");
