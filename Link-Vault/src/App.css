@@ -17,28 +17,64 @@ html, body, #root{
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  gap: 20px;
-  padding: 20px;
+  /* gap: 20px; */
+  /* padding: 20px; */
   
 }
 
 
 /* Navbar */
+/* Navbar */
 .NavBar{
   height: 10%;
   width: 100%;
   display: flex;
-  padding: 10px;
+  padding: 10px 20px;          /* tighter side padding */
   flex-direction: row;
-  justify-content: center;
-  align-items: flex-start;
-  padding: 40px;
-  gap: 50px;
+  align-items: center;          /* center vertically like the screenshot */
+  justify-content: space-between; /* brand | centered search | profile */
+  gap: 16px;                    /* smaller, cleaner gaps */
   color: white;
-  background-color: #91818A;
-  border-radius: 30px;
-  
+  background-color: #91818A;    /* matches screenshot */
+  border-radius: 30px;          /* rounded ends */
+}
 
+/* small brand cluster (home icon + text) */
+.NavBar .brand{
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  min-width: 160px;
+}
+
+.NavBar .title{
+  font-size: 35px;
+  font-weight: 600;
+  color: #f1eeee;
+}
+
+/* icons */
+.NavBar .icon{
+  display: block;
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+
+.NavBar .icon.profile{
+  width: 44px;
+  height: 44px;
+}
+
+/* center the search area */
+.NavBar .searchWrap{
+  flex: 1;                      /* take available space */
+  display: flex;
+  justify-content: center;      /* center input+button horizontally */
+}
+
+.NavBar .SearchBar button:hover{
+  filter: brightness(0.95);
 }
 
 /* main content*/

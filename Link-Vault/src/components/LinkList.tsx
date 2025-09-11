@@ -46,7 +46,7 @@ export default function LinkList({ links, onEdit, onDelete }: Props) {
                         rel="noopener noreferrer"
                         title={item.link}
                       >
-                        {item.link}
+                        Go to Website
                       </a>
                     </td>
                     <td>{item.description || ""}</td>

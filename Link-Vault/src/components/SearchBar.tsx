@@ -21,14 +21,8 @@ export default function SearchBar({
 
   return (
     <div
-      style={{
-        display: "flex",
-        alignItems: "center",
-        gap: 12,
-        marginBottom: 16,
-      }}
-    >
-      <img src={searchIcon} alt="Search" style={{ width: 24, height: 24 }} />
+      className="SearchBar">
+     
       <input
         type="text"
         placeholder="Search links..."
@@ -56,6 +50,10 @@ export default function SearchBar({
           border: "none",
           cursor: "pointer",
           fontWeight: 600,
+          backgroundColor: "green",
+          color: "white",
+          marginLeft: "18px",
+          
         }}
       >
         Search
