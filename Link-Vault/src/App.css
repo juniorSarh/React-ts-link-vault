@@ -37,6 +37,8 @@ html, body, #root{
   color: white;
   background-color: #91818A;    /* matches screenshot */
   border-radius: 30px;          /* rounded ends */
+  overflow: hidden;
+  position: relative;
 }
 
 /* small brand cluster (home icon + text) */
@@ -173,6 +175,7 @@ html, body, #root{
 /* Table styling */
 .linktable-wrapper {
   overflow-x: auto;
+  overflow-y: auto;
 }
 
 .linktable {

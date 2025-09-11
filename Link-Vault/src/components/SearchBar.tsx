@@ -1,6 +1,6 @@
 import React, { useCallback } from "react";
 import type { ChangeEvent, KeyboardEvent } from "react";
-import searchIcon from "../Icons/search.png";
+
 
 type SearchBarProps = {
   value: string;
