@@ -17,6 +17,14 @@ A lightweight React + TypeScript app for storing, tagging, and searching your fa
 
 ---
 
+---
+# How to clone and run the Project
+1. git clone https://github.com/juniorSarh/React-ts-link-vault
+2. cd Link-Vault
+3. npm install
+4. npm run dev
+
+
 ## 🚀 Getting Started
 
 ### Prerequisites
