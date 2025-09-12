@@ -20,7 +20,7 @@ A lightweight React + TypeScript app for storing, tagging, and searching your fa
 * Set up React Project
 * npm create vite@latest
 * Project name React-ts-link-vault
-* cd Task8-1-UI-challenge
+* cd React-ts-link-vault
 * npm install
 * npm run dev
 ---
