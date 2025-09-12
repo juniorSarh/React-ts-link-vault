@@ -16,7 +16,13 @@ A lightweight React + TypeScript app for storing, tagging, and searching your fa
 - ESLint config with React hooks & refresh plugins
 
 ---
-
+# Steps Taken to Build the React App
+* Set up React Project
+* npm create vite@latest
+* Project name React-ts-link-vault
+* cd Task8-1-UI-challenge
+* npm install
+* npm run dev
 ---
 # How to clone and run the Project
 1. git clone https://github.com/juniorSarh/React-ts-link-vault
