@@ -124,6 +124,7 @@ export default function LinkForm({
       <div className="actions">
         <FormButton type="submit" variant="save">
           {isEditing ? "Update" : "Save"}
+          
         </FormButton>
         <FormButton type="button" variant="cancel" onClick={handleCancel}>
           {isEditing ? "Cancel edit" : "Cancel"}

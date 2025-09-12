@@ -17,15 +17,26 @@ export default function MainComponent({ query }: { query: string }) {
       setLinks(Array.isArray(parsed) ? parsed : []);
     } catch {
       setLinks([]);
+      alert("❌ Failed to load saved links.");
     }
   }, []);
 
   const filtered = useMemo(() => filterLinks(links, query), [links, query]);
 
+  const saveToStorage = (next: LinkItem[]) => {
+    try {
+      localStorage.setItem(LS_KEY, JSON.stringify(next));
+      return true;
+    } catch {
+      return false;
+    }
+  };
+
   const handleAdd = (item: LinkItem) => {
     setLinks((prev) => {
       const next = [...prev, item];
-      localStorage.setItem(LS_KEY, JSON.stringify(next));
+      const ok = saveToStorage(next);
+      alert(ok ? "✅ Saved successfully!" : "❌ Save failed. Please try again.");
       return next;
     });
   };
@@ -34,16 +45,22 @@ export default function MainComponent({ query }: { query: string }) {
     setLinks((prev) => {
       const next = [...prev];
       next[index] = item;
-      localStorage.setItem(LS_KEY, JSON.stringify(next));
+      const ok = saveToStorage(next);
+      alert(ok ? "✅ Updated successfully!" : "❌ Update failed. Please try again.");
       return next;
     });
     setEditingIndex(null);
   };
 
   const handleDelete = (index: number) => {
+    // ✅ Confirm before deleting
+    const confirmDelete = window.confirm("Are you sure you want to delete this link?");
+    if (!confirmDelete) return;
+
     setLinks((prev) => {
       const next = prev.filter((_, i) => i !== index);
-      localStorage.setItem(LS_KEY, JSON.stringify(next));
+      const ok = saveToStorage(next);
+      alert(ok ? "✅ Deleted successfully!" : "❌ Delete failed. Please try again.");
       return next;
     });
     setEditingIndex((curr) => (curr === index ? null : curr));

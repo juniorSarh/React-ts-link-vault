@@ -27,7 +27,7 @@ export default function LinkList({ links, onEdit, onDelete }: Props) {
             {links.length === 0 ? (
               <tr>
                 <td colSpan={5} className="linklist-empty">
-                  No matching links.
+                  No Links avaliable.
                 </td>
               </tr>
             ) : (
