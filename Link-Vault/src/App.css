@@ -8,6 +8,7 @@ html, body, #root{
   height: 100%;
   width: 100%;
   background-color:whitesmoke;
+  font-size: 14px;
 }
 
 .App{
@@ -236,4 +237,37 @@ td.linklist-empty {
   padding: 30px;
   color: white;
   border-radius: 30px;
+}
+
+@media (min-width: 600px) {
+  body {
+    font-size: 16px;
+  }
+
+  .container {
+    padding: 20px;
+  }
+}
+
+/* Large devices (desktops) */
+@media (min-width: 992px) {
+  body {
+    font-size: 18px;
+  }
+
+  .container {
+    max-width: 960px;
+    margin: auto;
+  }
+}
+
+/* Extra large devices (large desktops) */
+@media (min-width: 1200px) {
+  body {
+    font-size: 20px;
+  }
+
+  .container {
+    max-width: 1140px;
+  }
 }

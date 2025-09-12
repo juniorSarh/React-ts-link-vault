@@ -25,7 +25,7 @@ export default function SearchBar({
      
       <input
         type="text"
-        placeholder="Search links..."
+        placeholder="🔍 Search links..."
         value={value}
         onChange={handleInput}
         onKeyDown={handleKey}
