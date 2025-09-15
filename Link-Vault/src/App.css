@@ -8,7 +8,7 @@ html, body, #root{
   height: 100%;
   width: 100%;
   background-color:whitesmoke;
-  font-size: 14px;
+  font-size: 16px;
 }
 
 .App{
@@ -37,7 +37,8 @@ html, body, #root{
   gap: 16px;                    /* smaller, cleaner gaps */
   color: white;
   background-color: #91818A;    /* matches screenshot */
-  border-radius: 30px;          /* rounded ends */
+  border-bottom-left-radius:30px;
+  border-bottom-right-radius:30px;
   overflow: hidden;
   position: relative;
 }
@@ -134,6 +135,7 @@ html, body, #root{
   border-radius: 10px;
   padding: 16px;
   max-width:98%;
+  font-size: 24px;
   margin: 0 auto 20px;
    box-shadow: '0 4px 8px rgba(0, 0, 0, 0.1)';
    background-Color: '#9b9999ff';
@@ -274,6 +276,7 @@ td.linklist-empty {
   padding: 30px;
   color: white;
   border-radius: 30px;
+  font-size: 14px;
 }
 
 /* 🔹 Mobile (≤ 480px): stack input + button */
