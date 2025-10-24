@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import type { FormEvent } from "react";
 import FormButton from "./FormButton";
+import { useToast } from "./toast-core";
 
 export type LinkItem = {
   title: string;
@@ -29,6 +30,7 @@ export default function LinkForm({
   const [link, setLink] = useState("");
   const [description, setDescription] = useState("");
   const [tagsText, setTagsText] = useState("");
+  const { show } = useToast();
 
   
   useEffect(() => {
@@ -48,7 +50,7 @@ export default function LinkForm({
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!title.trim() || !link.trim()) {
-      alert("Please fill in both Title and Link.");
+      show("Please fill in both Title and Link.", { variant: "warning" });
       return;
     }
     const item: LinkItem = {

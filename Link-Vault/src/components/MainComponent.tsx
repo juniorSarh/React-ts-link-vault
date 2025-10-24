@@ -1,14 +1,16 @@
-import React, { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import LinkForm from "./LinkForm";
 import LinkList from "./LinkList";
 import type { LinkItem } from "./LinkForm";
 import { filterLinks } from "../utils/filterLinks";
+import { useToast } from "./toast-core";
 
 const LS_KEY = "links";
 
 export default function MainComponent({ query }: { query: string }) {
   const [links, setLinks] = useState<LinkItem[]>([]);
   const [editingIndex, setEditingIndex] = useState<number | null>(null);
+  const { show } = useToast();
 
   useEffect(() => {
     try {
@@ -17,9 +19,9 @@ export default function MainComponent({ query }: { query: string }) {
       setLinks(Array.isArray(parsed) ? parsed : []);
     } catch {
       setLinks([]);
-      alert("❌ Failed to load saved links.");
+      show("Failed to load saved links.", { variant: "error" });
     }
-  }, []);
+  }, [show]);
 
   const filtered = useMemo(() => filterLinks(links, query), [links, query]);
 
@@ -36,7 +38,9 @@ export default function MainComponent({ query }: { query: string }) {
     setLinks((prev) => {
       const next = [...prev, item];
       const ok = saveToStorage(next);
-      alert(ok ? "✅ Saved successfully!" : "❌ Save failed. Please try again.");
+      show(ok ? "Saved successfully!" : "Save failed. Please try again.", {
+        variant: ok ? "success" : "error",
+      });
       return next;
     });
   };
@@ -46,7 +50,9 @@ export default function MainComponent({ query }: { query: string }) {
       const next = [...prev];
       next[index] = item;
       const ok = saveToStorage(next);
-      alert(ok ? "✅ Updated successfully!" : "❌ Update failed. Please try again.");
+      show(ok ? "Updated successfully!" : "Update failed. Please try again.", {
+        variant: ok ? "success" : "error",
+      });
       return next;
     });
     setEditingIndex(null);
@@ -60,7 +66,9 @@ export default function MainComponent({ query }: { query: string }) {
     setLinks((prev) => {
       const next = prev.filter((_, i) => i !== index);
       const ok = saveToStorage(next);
-      alert(ok ? "✅ Deleted successfully!" : "❌ Delete failed. Please try again.");
+      show(ok ? "Deleted successfully!" : "Delete failed. Please try again.", {
+        variant: ok ? "success" : "error",
+      });
       return next;
     });
     setEditingIndex((curr) => (curr === index ? null : curr));

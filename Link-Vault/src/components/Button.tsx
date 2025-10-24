@@ -1,8 +1,8 @@
-import React from 'react';
+import type { CSSProperties } from 'react';
 
 interface ButtonProps {
   name: string;
-  style?: React.CSSProperties;
+  style?: CSSProperties;
 }
 
 export default function Button({name, style}: ButtonProps) {

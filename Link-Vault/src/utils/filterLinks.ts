@@ -1,9 +1,5 @@
 // utils/filterLinks.ts
-export type LinkItem = {
-  title: string;
-  description?: string;
-  tags?: string[]; // or string
-};
+import type { LinkItem } from "../components/LinkForm";
 
 export function filterLinks(links: LinkItem[], query: string) {
   const q = query.trim().toLowerCase();

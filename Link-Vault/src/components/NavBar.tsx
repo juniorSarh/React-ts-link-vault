@@ -1,4 +1,4 @@
-import React from "react";
+ 
 import SearchBar from "./SearchBar";
 import home from "../Icons/home.png";
 import profile from "../Icons/profile.png";

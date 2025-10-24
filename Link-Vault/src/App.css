@@ -20,27 +20,33 @@ html, body, #root{
   align-items: center;
   /* gap: 20px; */
   /* padding: 20px; */
-  
+  padding-top: 100px; /* offset for fixed navbar so titles are visible */
 }
 
 
 /* Navbar */
 /* Navbar */
 .NavBar{
-  height: 10%;
   width: 100%;
   display: flex;
-  padding: 10px 20px;          /* tighter side padding */
+  padding: 12px 20px;          /* balanced padding */
   flex-direction: row;
-  align-items: center;          /* center vertically like the screenshot */
+  align-items: center;          /* center vertically */
   justify-content: space-between; /* brand | centered search | profile */
   gap: 16px;                    /* smaller, cleaner gaps */
   color: white;
   background-color: #91818A;    /* matches screenshot */
   border-bottom-left-radius:30px;
   border-bottom-right-radius:30px;
-  overflow: hidden;
-  position: relative;
+  overflow: visible;            /* avoid clipping wrapped rows */
+  position: fixed;              /* fix to top */
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  min-height: 72px;             /* ensure comfortable height */
+  flex-wrap: wrap;              /* allow wrapping on narrow screens */
+  row-gap: 10px;                /* spacing between wrapped rows */
 }
 
 /* small brand cluster (home icon + text) */
@@ -49,6 +55,7 @@ html, body, #root{
   align-items: center;
   gap: 20px;
   min-width: 160px;
+  flex: 0 0 auto; /* don't shrink brand */
 }
 
 .NavBar .title{
@@ -60,21 +67,22 @@ html, body, #root{
 /* icons */
 .NavBar .icon{
   display: block;
-  width: 40px;
-  height: 40px;
+  width: 36px;
+  height: 36px;
   object-fit: contain;
 }
 
 .NavBar .icon.profile{
-  width: 44px;
-  height: 44px;
+  width: 40px;
+  height: 40px;
 }
 
 /* center the search area */
 .NavBar .searchWrap{
-  flex: 1;                      /* take available space */
+  flex: 1 1 420px;              /* take available space with reasonable basis */
   display: flex;
   justify-content: center;      /* center input+button horizontally */
+  min-width: 220px;             /* avoid collapsing too small */
 }
 
 .NavBar .SearchBar button:hover{
@@ -270,17 +278,20 @@ td.linklist-empty {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  height: 10%;
+  align-items: center;
   width: 100%;
   background-color: #91818A;
-  padding: 30px;
+  padding: 20px 24px;
   color: white;
   border-radius: 30px;
   font-size: 14px;
+  min-height: 56px; /* avoid fixed percent height */
+  text-align: center;
 }
 
 /* 🔹 Mobile (≤ 480px): stack input + button */
 @media (max-width: 480px) {
+  .App{ padding-top: 112px; }
   .SearchBar {
     flex-direction: column;
     align-items: stretch;
@@ -290,12 +301,35 @@ td.linklist-empty {
   .SearchBar input,
   .SearchBar button {
     width: 100%;
-    height: 40px;
+    height: 36px;
     font-size: 14px;
   }
 
    body{
     font-size: 14px;
+  }
+
+  /* Make navbar adapt better on small screens */
+  .NavBar{
+    padding: 10px 12px;
+    min-height: 64px;
+    gap: 12px;
+    align-items: stretch; /* allow children to fill width when wrapped */
+  }
+  .NavBar .brand{ min-width: auto; gap: 12px; flex: 1 1 auto; }
+  .NavBar .title{ font-size: 20px; }
+  .NavBar .icon{ width: 28px; height: 28px; }
+  .NavBar .icon.profile{ width: 32px; height: 32px; }
+  .NavBar .searchWrap{ width: 100%; order: 3; } /* move search to its own row */
+  /* Make main content use full width on small screens */
+  .App main{ width: 100% !important; padding: 12px !important; }
+
+  /* Footer adjustments on small screens */
+  .Footer{
+    border-radius: 20px;
+    padding: 14px 16px;
+    font-size: 13px;
+    min-height: 52px;
   }
 }
 
@@ -313,6 +347,10 @@ td.linklist-empty {
    body{
     font-size: 14px;
   }
+
+  .NavBar{ min-height: 68px; }
+  .NavBar .title{ font-size: 28px; }
+  .Footer{ padding: 16px 20px; min-height: 56px; }
 }
 
 /* 🔹 Desktop (≥ 1024px): larger input */
@@ -329,4 +367,91 @@ td.linklist-empty {
   body{
     font-size: 14px;
   }
+}
+
+/* Toasts */
+.toast-viewport{
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 9999;
+  max-width: 92vw;
+}
+
+.toast-item{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: 8px;
+  color: #1f2937;
+  background: #ffffff;
+  box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -4px rgba(0,0,0,0.1);
+  border-left: 6px solid #3b82f6;
+}
+
+.toast-item .toast-message{ flex: 1; }
+.toast-item .toast-close{
+  appearance: none;
+  border: none;
+  background: transparent;
+  color: #374151;
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.toast-success{ border-left-color: #16a34a; }
+.toast-error{ border-left-color: #dc2626; }
+.toast-warning{ border-left-color: #d97706; }
+.toast-info{ border-left-color: #3b82f6; }
+
+/* Responsive tweaks for containers */
+@media (max-width: 768px){
+  .NavBar{ gap: 10px; padding: 8px 12px; }
+  .NavBar .searchWrap{ min-width: 100%; }
+  .linkform, .linklist{ width: 98%; padding: 12px; }
+  .toast-viewport{ left: 12px; right: 12px; bottom: 12px; }
+}
+
+@media (min-width: 1280px){
+  .linkform, .linklist{ max-width: 1100px; }
+}
+
+@media (min-width: 640px) and (max-width: 767px){
+  .NavBar{ min-height: 70px; }
+  .NavBar .title{ font-size: 26px; }
+  .SearchBar{ max-width: 560px; }
+  .SearchBar input{ height: 42px; font-size: 15px; }
+  .SearchBar button{ height: 42px; }
+}
+
+@media (min-width: 768px) and (max-width: 1023px){
+  .NavBar{ min-height: 76px; padding: 12px 24px; }
+  .NavBar .title{ font-size: 30px; }
+  .SearchBar{ max-width: 700px; }
+  .linkform, .linklist{ width: 96%; }
+}
+
+@media (min-width: 1024px) and (max-width: 1279px){
+  .NavBar{ min-height: 78px; }
+  .NavBar .title{ font-size: 32px; }
+  .SearchBar{ max-width: 800px; }
+}
+
+@media (min-width: 1280px) and (max-width: 1535px){
+  .NavBar{ min-height: 80px; }
+  .NavBar .title{ font-size: 34px; }
+  .linkform, .linklist{ max-width: 1100px; }
+}
+
+@media (min-width: 1536px){
+  .NavBar{ min-height: 84px; }
+  .NavBar .title{ font-size: 36px; }
+  .SearchBar{ max-width: 900px; }
+  .linkform, .linklist{ max-width: 1200px; }
 }
